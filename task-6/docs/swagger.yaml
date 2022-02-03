@@ -1,0 +1,280 @@
+definitions:
+  main.Comment:
+    properties:
+      body:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      postId:
+        description: gorm.Model
+        type: integer
+    type: object
+  main.Post:
+    properties:
+      body:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      userid:
+        description: gorm.Model
+        type: integer
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Nix Education Trainee Task API
+  version: "1.0"
+paths:
+  /comments:
+    get:
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Comment'
+      summary: Retrieves comments
+  /comments/{id}:
+    get:
+      parameters:
+      - description: Comment Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Retrieves comment based on given ID
+  /comments/{id}/delete:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Comment Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Comment'
+      summary: Delete comments based on comment ID
+  /comments/{id}/edit:
+    put:
+      parameters:
+      - description: post Id
+        in: formData
+        name: post_id
+        required: true
+        type: integer
+      - description: comment Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: E-mail
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Body
+        in: formData
+        name: body
+        required: true
+        type: string
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Comment'
+      summary: Edit comment for given Id
+  /posts:
+    get:
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Retrieves posts
+  /posts/{id}:
+    get:
+      parameters:
+      - description: Post Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Retrieves posts based on given ID
+  /posts/{id}/comments:
+    get:
+      parameters:
+      - description: Post Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Comment'
+      summary: Retrieves comments based on post ID
+  /posts/{id}/comments/add:
+    post:
+      parameters:
+      - description: post Id
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: E-mail
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Body
+        in: formData
+        name: body
+        required: true
+        type: string
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Comment'
+      summary: Add comment for given post Id
+  /posts/{id}/delete:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Post Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Delete post based on post ID
+  /posts/{id}/edit:
+    put:
+      parameters:
+      - description: User Id
+        in: formData
+        name: userid
+        required: true
+        type: integer
+      - description: Post Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Post Title
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: Post Body
+        in: formData
+        name: body
+        required: true
+        type: string
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Edit post
+  /posts/add:
+    post:
+      parameters:
+      - description: User Id
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: Post Title
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: Post Body
+        in: formData
+        name: body
+        required: true
+        type: string
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Post'
+      summary: Add post
+swagger: "2.0"
