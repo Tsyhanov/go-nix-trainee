@@ -158,9 +158,14 @@ func login(c echo.Context) error {
 		Path:     "/restricted",
 		HttpOnly: true,
 	})
-	return c.JSON(http.StatusOK, map[string]string{
-		"token": t,
-	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+	//	return c.JSON(http.StatusOK, map[string]string{
+	//		"token": t,
+	//	})
 }
 
 func accessible(c echo.Context) error {
@@ -195,13 +200,12 @@ func handleGoogleLogin(c echo.Context) error {
 
 func handleGoogleCallback(c echo.Context) error {
 	fmt.Println("handleGoogleCallback")
-	content, err := getUserInfo(c.FormValue("state"), c.FormValue("code"))
+	_, err := getUserInfo(c.FormValue("state"), c.FormValue("code"))
 	if err != nil {
 		fmt.Println(err.Error())
 		fmt.Println("handleGoogleCallback getUserInfo error")
 		return c.Redirect(http.StatusTemporaryRedirect, "/")
 	}
-	fmt.Println(content)
 
 	//	return c.Redirect(http.StatusTemporaryRedirect, "/swagger/index.html")
 
