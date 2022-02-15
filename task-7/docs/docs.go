@@ -32,7 +32,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/comments": {
+        "/restricted/comments": {
             "get": {
                 "produces": [
                     "application/json",
@@ -43,13 +43,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Comment"
+                            "$ref": "#/definitions/database.Comment"
                         }
                     }
                 }
             }
         },
-        "/comments/{id}": {
+        "/restricted/comments/{id}": {
             "get": {
                 "produces": [
                     "application/json",
@@ -69,13 +69,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
             }
         },
-        "/comments/{id}/delete": {
+        "/restricted/comments/{id}/delete": {
             "delete": {
                 "consumes": [
                     "application/json"
@@ -98,13 +98,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Comment"
+                            "$ref": "#/definitions/database.Comment"
                         }
                     }
                 }
             }
         },
-        "/comments/{id}/edit": {
+        "/restricted/comments/{id}/edit": {
             "put": {
                 "produces": [
                     "application/json",
@@ -152,13 +152,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Comment"
+                            "$ref": "#/definitions/database.Comment"
                         }
                     }
                 }
             }
         },
-        "/posts": {
+        "/restricted/posts": {
             "get": {
                 "produces": [
                     "application/json",
@@ -169,13 +169,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
             }
         },
-        "/posts/add": {
+        "/restricted/posts/add": {
             "post": {
                 "produces": [
                     "application/json",
@@ -209,13 +209,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
             }
         },
-        "/posts/{id}": {
+        "/restricted/posts/{id}": {
             "get": {
                 "produces": [
                     "application/json",
@@ -235,13 +235,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
             }
         },
-        "/posts/{id}/comments": {
+        "/restricted/posts/{id}/comments": {
             "get": {
                 "produces": [
                     "application/json",
@@ -261,13 +261,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Comment"
+                            "$ref": "#/definitions/database.Comment"
                         }
                     }
                 }
             }
         },
-        "/posts/{id}/comments/add": {
+        "/restricted/posts/{id}/comments/add": {
             "post": {
                 "produces": [
                     "application/json",
@@ -308,13 +308,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Comment"
+                            "$ref": "#/definitions/database.Comment"
                         }
                     }
                 }
             }
         },
-        "/posts/{id}/delete": {
+        "/restricted/posts/{id}/delete": {
             "delete": {
                 "consumes": [
                     "application/json"
@@ -337,13 +337,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
             }
         },
-        "/posts/{id}/edit": {
+        "/restricted/posts/{id}/edit": {
             "put": {
                 "produces": [
                     "application/json",
@@ -384,7 +384,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Post"
+                            "$ref": "#/definitions/database.Post"
                         }
                     }
                 }
@@ -392,7 +392,7 @@ var doc = `{
         }
     },
     "definitions": {
-        "main.Comment": {
+        "database.Comment": {
             "type": "object",
             "properties": {
                 "body": {
@@ -413,7 +413,7 @@ var doc = `{
                 }
             }
         },
-        "main.Post": {
+        "database.Post": {
             "type": "object",
             "properties": {
                 "body": {

@@ -1,5 +1,5 @@
 definitions:
-  main.Comment:
+  database.Comment:
     properties:
       body:
         type: string
@@ -13,7 +13,7 @@ definitions:
         description: gorm.Model
         type: integer
     type: object
-  main.Post:
+  database.Post:
     properties:
       body:
         type: string
@@ -38,7 +38,7 @@ info:
   title: Nix Education Trainee Task API
   version: "1.0"
 paths:
-  /comments:
+  /restricted/comments:
     get:
       produces:
       - application/json
@@ -47,9 +47,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Comment'
+            $ref: '#/definitions/database.Comment'
       summary: Retrieves comments
-  /comments/{id}:
+  /restricted/comments/{id}:
     get:
       parameters:
       - description: Comment Id
@@ -64,9 +64,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Retrieves comment based on given ID
-  /comments/{id}/delete:
+  /restricted/comments/{id}/delete:
     delete:
       consumes:
       - application/json
@@ -83,9 +83,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Comment'
+            $ref: '#/definitions/database.Comment'
       summary: Delete comments based on comment ID
-  /comments/{id}/edit:
+  /restricted/comments/{id}/edit:
     put:
       parameters:
       - description: post Id
@@ -120,9 +120,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Comment'
+            $ref: '#/definitions/database.Comment'
       summary: Edit comment for given Id
-  /posts:
+  /restricted/posts:
     get:
       produces:
       - application/json
@@ -131,9 +131,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Retrieves posts
-  /posts/{id}:
+  /restricted/posts/{id}:
     get:
       parameters:
       - description: Post Id
@@ -148,9 +148,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Retrieves posts based on given ID
-  /posts/{id}/comments:
+  /restricted/posts/{id}/comments:
     get:
       parameters:
       - description: Post Id
@@ -165,9 +165,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Comment'
+            $ref: '#/definitions/database.Comment'
       summary: Retrieves comments based on post ID
-  /posts/{id}/comments/add:
+  /restricted/posts/{id}/comments/add:
     post:
       parameters:
       - description: post Id
@@ -197,9 +197,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Comment'
+            $ref: '#/definitions/database.Comment'
       summary: Add comment for given post Id
-  /posts/{id}/delete:
+  /restricted/posts/{id}/delete:
     delete:
       consumes:
       - application/json
@@ -216,9 +216,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Delete post based on post ID
-  /posts/{id}/edit:
+  /restricted/posts/{id}/edit:
     put:
       parameters:
       - description: User Id
@@ -248,9 +248,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Edit post
-  /posts/add:
+  /restricted/posts/add:
     post:
       parameters:
       - description: User Id
@@ -275,6 +275,6 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Post'
+            $ref: '#/definitions/database.Post'
       summary: Add post
 swagger: "2.0"
